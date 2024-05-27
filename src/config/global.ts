@@ -8,6 +8,7 @@ const envs = {
   USER_DB: process.env.USER_DB,
   HOST_DB: process.env.HOST_DB,
   PASS_DB: process.env.PASS_DB,
+  API_URL: process.env.API_URL,
 };
 
 export default envs;
