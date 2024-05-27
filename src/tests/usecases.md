@@ -1,7 +1,19 @@
 # Cart Use Cases
 
+## Criar Carrinho
+- Deve criar carrinho com o userId e status.
+- Deve retornar erro se userId não existe.
+
+## Atualiza status do Carrinho
+- Deve atualizar status do carrinho.
+- Deve retornar erro se tentar atualizar carrinho inexistente.
+
+## Busca carrinho com ID
+- Deve buscar detalhes do carrinho de acordo ID e status open.
+
 ## Adicionar Item no Carrinho
 - Deve adicionar um item no carrinho com os dados eventID, cartID, qtd.
+- Deve retornar erro se carrinho for status closed.
 - Deve retornar erro se o item não existir.
 - Deve retornar erro se a qtd for menor que 1.
 
