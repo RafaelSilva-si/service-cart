@@ -31,6 +31,6 @@ Cart.init(
   },
 );
 
-Cart.belongsTo(sequelize.models.User, { foreignKey: 'userID' });
+// Cart.belongsTo(sequelize.models.User, { foreignKey: 'userID' });
 
 export default Cart;
