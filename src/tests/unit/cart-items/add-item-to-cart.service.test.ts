@@ -40,4 +40,21 @@ describe('Add Item To Cart', () => {
     const result = await addItemToCartService.addItemToCart(data);
     assert.deepEqual(result, mocks.returnCartItemSuccess);
   });
+
+  it('Deve retornar erro se o carrinho não existir', async () => {
+    Sinon.stub(CartRepository.prototype, 'getCartById').resolves(null);
+
+    const data = {
+      userID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      qtd: 1,
+    };
+
+    const promise = addItemToCartService.addItemToCart(data);
+    await assert.rejects(promise, {
+      message: 'Missing param Carrinho Não Existe',
+      status: 401,
+    });
+  });
 });
