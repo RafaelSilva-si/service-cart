@@ -13,6 +13,7 @@
 
 ## Adicionar Item no Carrinho
 - Deve adicionar um item no carrinho com os dados eventID, cartID, qtd.
+- Deve retornar erro se o carrinho não existir.
 - Deve retornar erro se carrinho for status closed.
 - Deve retornar erro se o item não existir.
 - Deve retornar erro se a qtd for menor que 1.
