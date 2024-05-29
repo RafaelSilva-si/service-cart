@@ -4,6 +4,7 @@ import AddItemToCart, {
 } from '../../domain/usecases/cart-items/add-item-to-cart';
 import CartItemsRepository from '../../repositories/cart-items.repository';
 import CartRepository from '../../repositories/cart-repository';
+import { MissingParamError } from '../../utils/errors/missingParamError';
 
 class AddItemToCartService implements AddItemToCart {
   private readonly cartItemsRepository: CartItemsRepository;
@@ -24,6 +25,9 @@ class AddItemToCartService implements AddItemToCart {
         status: 'open',
       });
       data.cartID = cart.id;
+    } else {
+      const existCart = await this.cartRepository.getCartById(data.cartID);
+      if (!existCart) throw new MissingParamError('Carrinho Não Existe', 401);
     }
 
     return await this.cartItemsRepository.addItemToCart(data);
