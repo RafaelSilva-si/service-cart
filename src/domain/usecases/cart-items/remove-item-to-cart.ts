@@ -1,11 +1,5 @@
-export interface RemoveItemToCartModel {
-  cartID?: string;
-  itemID: string;
-  userID: string;
-}
-
 export interface RemoveItemToCart {
-  removeItem: (data: RemoveItemToCartModel) => Promise<boolean>;
+  removeItem: (id: string) => Promise<boolean>;
 }
 
 export default RemoveItemToCart;
