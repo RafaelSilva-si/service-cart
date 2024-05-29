@@ -28,6 +28,9 @@ class AddItemToCartService implements AddItemToCart {
     } else {
       const existCart = await this.cartRepository.getCartById(data.cartID);
       if (!existCart) throw new MissingParamError('Carrinho Não Existe', 401);
+
+      if (existCart.status !== 'open')
+        throw new MissingParamError('Carrinho não está aberto', 401);
     }
 
     return await this.cartItemsRepository.addItemToCart(data);
