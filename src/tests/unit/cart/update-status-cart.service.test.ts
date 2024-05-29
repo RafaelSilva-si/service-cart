@@ -1,10 +1,10 @@
 import assert from 'assert';
-import CartRepository from '../../repositories/cart-repository';
-import UpdateStatusCartService from '../../services/update-status-cart.service';
+import CartRepository from '../../../repositories/cart-repository';
+import UpdateStatusCartService from '../../../services/cart/update-status-cart.service';
 import Sinon from 'sinon';
 
 const mocks = {
-  returnCartSuccess: require('../mocks/return-cart-success'),
+  returnCartSuccess: require('../../mocks/return-cart-success'),
 };
 
 describe('Atualiza status do Carrinho', () => {

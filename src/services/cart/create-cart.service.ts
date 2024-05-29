@@ -1,8 +1,8 @@
-import Cart from '../domain/model/Cart';
-import { CreateCart } from '../domain/usecases/create-cart';
-import AxiosClient from '../infra/axios-client';
-import CartRepository from '../repositories/cart-repository';
-import { MissingParamError } from '../utils/errors/missingParamError';
+import Cart from '../../domain/model/Cart';
+import { CreateCart } from '../../domain/usecases/cart/create-cart';
+import AxiosClient from '../../infra/axios-client';
+import CartRepository from '../../repositories/cart-repository';
+import { MissingParamError } from '../../utils/errors/missingParamError';
 
 class CreateCartService implements CreateCart {
   private readonly cartRepository: CartRepository;

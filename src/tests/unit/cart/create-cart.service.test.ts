@@ -1,13 +1,13 @@
 import assert from 'assert';
-import CreateCartService from '../../services/create-cart.service';
-import CartRepository from '../../repositories/cart-repository';
+import CreateCartService from '../../../services/cart/create-cart.service';
+import CartRepository from '../../../repositories/cart-repository';
 import Sinon from 'sinon';
-import AxiosClient from '../../infra/axios-client';
-import envs from '../../config/global';
+import AxiosClient from '../../../infra/axios-client';
+import envs from '../../../config/global';
 
 const mocks = {
-  returnCartSuccess: require('../mocks/return-cart-success'),
-  returnUserSuccess: require('../mocks/return-user-success.json'),
+  returnCartSuccess: require('../../mocks/return-cart-success'),
+  returnUserSuccess: require('../../mocks/return-user-success.json'),
 };
 
 describe('Create Cart Service', () => {

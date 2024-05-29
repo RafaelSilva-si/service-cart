@@ -1,4 +1,4 @@
-import Cart from '../model/Cart';
+import Cart from '../../model/Cart';
 
 export interface CreateCartModel {
   userID: string;

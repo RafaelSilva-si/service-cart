@@ -1,7 +1,7 @@
-import Cart from '../domain/model/Cart';
-import { UpdateStatusCart } from '../domain/usecases/update-status-cart';
-import CartRepository from '../repositories/cart-repository';
-import { MissingParamError } from '../utils/errors/missingParamError';
+import Cart from '../../domain/model/Cart';
+import { UpdateStatusCart } from '../../domain/usecases/cart/update-status-cart';
+import CartRepository from '../../repositories/cart-repository';
+import { MissingParamError } from '../../utils/errors/missingParamError';
 
 class UpdateStatusCartService implements UpdateStatusCart {
   private readonly cartRepository: CartRepository;
