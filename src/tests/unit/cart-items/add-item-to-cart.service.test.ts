@@ -8,6 +8,7 @@ const mocks = {
   returnCartSuccess: require('../../mocks/return-cart-success'),
   returnUserSuccess: require('../../mocks/return-user-success.json'),
   returnCartItemSuccess: require('../../mocks/return-cart-item-success.json'),
+  returnCartClosed: require('../../mocks/return-cart-closed.json'),
 };
 
 describe('Add Item To Cart', () => {
@@ -54,6 +55,25 @@ describe('Add Item To Cart', () => {
     const promise = addItemToCartService.addItemToCart(data);
     await assert.rejects(promise, {
       message: 'Missing param Carrinho Não Existe',
+      status: 401,
+    });
+  });
+
+  it('Deve retornar erro se o status do carrinho for diferente de "open"', async () => {
+    Sinon.stub(CartRepository.prototype, 'getCartById').resolves(
+      mocks.returnCartClosed,
+    );
+
+    const data = {
+      userID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      qtd: 1,
+    };
+
+    const promise = addItemToCartService.addItemToCart(data);
+    await assert.rejects(promise, {
+      message: 'Missing param Carrinho não está aberto',
       status: 401,
     });
   });
