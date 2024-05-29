@@ -1,8 +1,11 @@
 import CartModel from '../data/models/Cart';
 import Cart from '../domain/model/Cart';
-import { CreateCart, CreateCartModel } from '../domain/usecases/create-cart';
-import { GetCartById } from '../domain/usecases/get-cart-by-id';
-import { UpdateStatusCart } from '../domain/usecases/update-status-cart';
+import {
+  CreateCart,
+  CreateCartModel,
+} from '../domain/usecases/cart/create-cart';
+import { GetCartById } from '../domain/usecases/cart/get-cart-by-id';
+import { UpdateStatusCart } from '../domain/usecases/cart/update-status-cart';
 import DBError from '../utils/errors/dbError';
 
 class CartRepository implements CreateCart, UpdateStatusCart, GetCartById {
