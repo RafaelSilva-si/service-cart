@@ -3,7 +3,7 @@ export interface CartItems {
   cartID: string;
   itemID: string;
   userID: string;
-  qtd: string;
+  qtd: number;
 }
 
 export default CartItems;
