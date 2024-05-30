@@ -50,4 +50,23 @@ describe('Atualizar Qtd de Item do Carrinho', () => {
       status: 404,
     });
   });
+
+  it('Deve remover item do carrinho se a quantidade for 0', async () => {
+    Sinon.stub(CartItemsRepository.prototype, 'getItemByID').resolves(
+      mocks.returnCartItemSuccess,
+    );
+    Sinon.stub(CartItemsRepository.prototype, 'updateQtdItemCart').resolves(
+      mocks.returnCartItemSuccess,
+    );
+    Sinon.stub(CartItemsRepository.prototype, 'removeItem').resolves(true);
+
+    const data = {
+      cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      qtd: 0,
+    };
+
+    const result = await updateQtdItemCartService.updateQtdItemCart(data);
+    assert.deepEqual(result, mocks.returnCartItemSuccess);
+  });
 });
