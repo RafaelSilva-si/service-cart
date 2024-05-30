@@ -27,3 +27,6 @@
 ## Limpar carrinho
 - Deve remover todos items do carrinho.
 - Deve retornar erro se o carrinho não existe.
+
+## Listar carrinho
+- Deve retornar detalhes do carrinho, items, valor total e status.
