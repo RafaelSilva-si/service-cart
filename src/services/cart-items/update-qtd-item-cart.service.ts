@@ -18,6 +18,10 @@ class UpdateQtdItemCartService implements UpdateQtdItemCart {
     if (!existItem)
       throw new MissingParamError('Item do carrinho não encontrado', 404);
 
+    if (data.qtd <= 0) {
+      await this.cartItemsRepository.removeItem(data.itemID);
+    }
+
     return await this.cartItemsRepository.updateQtdItemCart(data);
   }
 }
