@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/sequelize';
+import User from './User';
 
 class Cart extends Model {
   public id!: string;
@@ -18,7 +19,7 @@ Cart.init(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: sequelize.models.User,
+        model: User,
         key: 'id',
       },
     },
@@ -34,7 +35,5 @@ Cart.init(
     tableName: 'carts',
   },
 );
-
-Cart.belongsTo(sequelize.models.User, { foreignKey: 'userID', as: 'user' });
 
 export default Cart;

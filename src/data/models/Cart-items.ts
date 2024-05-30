@@ -1,6 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/sequelize';
 import Cart from './Cart';
+import Event from './Events';
 
 class CartItems extends Model {
   public id!: string;
@@ -29,7 +30,7 @@ CartItems.init(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: sequelize.models.Event,
+        model: Event,
         key: 'id',
       },
     },
@@ -49,11 +50,5 @@ CartItems.init(
     tableName: 'cart_items',
   },
 );
-
-CartItems.belongsTo(Cart, { foreignKey: 'cartID', as: 'cart' });
-CartItems.belongsTo(sequelize.models.Event, {
-  foreignKey: 'itemID',
-  as: 'event',
-});
 
 export default CartItems;
