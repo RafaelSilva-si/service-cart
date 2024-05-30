@@ -18,6 +18,9 @@ describe('Atualizar Qtd de Item do Carrinho', () => {
   });
 
   it('Deve atualizar a quantidade de um item do carrinho', async () => {
+    Sinon.stub(CartItemsRepository.prototype, 'getItemByID').resolves(
+      mocks.returnCartItemSuccess,
+    );
     Sinon.stub(CartItemsRepository.prototype, 'updateQtdItemCart').resolves(
       mocks.returnCartItemSuccess,
     );
@@ -30,5 +33,21 @@ describe('Atualizar Qtd de Item do Carrinho', () => {
 
     const result = await updateQtdItemCartService.updateQtdItemCart(data);
     assert.deepEqual(result, mocks.returnCartItemSuccess);
+  });
+
+  it('Deve retornar erro se o item do carrinho não existir', async () => {
+    Sinon.stub(CartItemsRepository.prototype, 'getItemByID').resolves(null);
+
+    const data = {
+      cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      qtd: 1,
+    };
+
+    const promise = updateQtdItemCartService.updateQtdItemCart(data);
+    await assert.rejects(promise, {
+      message: 'Missing param Item do carrinho não encontrado',
+      status: 404,
+    });
   });
 });
