@@ -18,7 +18,7 @@ class CartRepository
     try {
       return await CartModel.findOne({
         where: { id: cartID },
-        include: [{ model: CartItems, as: 'items' }],
+        include: [{ model: CartItems, as: 'items', include: ['event'] }],
       });
     } catch (error) {
       throw new DBError(error.message, 500);

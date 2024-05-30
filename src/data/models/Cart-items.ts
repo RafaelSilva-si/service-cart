@@ -28,6 +28,10 @@ CartItems.init(
     itemID: {
       type: DataTypes.UUID,
       allowNull: false,
+      references: {
+        model: sequelize.models.Event,
+        key: 'id',
+      },
     },
     userID: {
       type: DataTypes.UUID,
@@ -46,6 +50,10 @@ CartItems.init(
   },
 );
 
-// CartItems.belongsTo(Cart, { foreignKey: 'cartID' });
+CartItems.belongsTo(Cart, { foreignKey: 'cartID', as: 'cart' });
+CartItems.belongsTo(sequelize.models.Event, {
+  foreignKey: 'itemID',
+  as: 'event',
+});
 
 export default CartItems;

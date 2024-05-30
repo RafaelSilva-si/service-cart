@@ -17,6 +17,10 @@ Cart.init(
     userID: {
       type: DataTypes.UUID,
       allowNull: false,
+      references: {
+        model: sequelize.models.User,
+        key: 'id',
+      },
     },
     status: {
       type: DataTypes.STRING,
@@ -31,6 +35,6 @@ Cart.init(
   },
 );
 
-// Cart.belongsTo(sequelize.models.User, { foreignKey: 'userID' });
+Cart.belongsTo(sequelize.models.User, { foreignKey: 'userID', as: 'user' });
 
 export default Cart;
