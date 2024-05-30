@@ -3,6 +3,7 @@ import CartItems from '../domain/model/Cart-items';
 import AddItemToCart, {
   AddItemToCartModel,
 } from '../domain/usecases/cart-items/add-item-to-cart';
+import ClearCart from '../domain/usecases/cart-items/clear-cart';
 import { GetItemByID } from '../domain/usecases/cart-items/get-item-by-id';
 import RemoveItemToCart from '../domain/usecases/cart-items/remove-item-to-cart';
 import {
@@ -12,7 +13,12 @@ import {
 import DBError from '../utils/errors/dbError';
 
 class CartItemsRepository
-  implements AddItemToCart, RemoveItemToCart, GetItemByID, UpdateQtdItemCart
+  implements
+    AddItemToCart,
+    RemoveItemToCart,
+    GetItemByID,
+    UpdateQtdItemCart,
+    ClearCart
 {
   async addItemToCart(data: AddItemToCartModel): Promise<CartItems> {
     try {
@@ -49,6 +55,15 @@ class CartItemsRepository
         },
       );
       return result[1][0].dataValues;
+    } catch (error) {
+      throw new DBError(error.message, 500);
+    }
+  }
+
+  async clear(cartID: string): Promise<boolean> {
+    try {
+      await CartItemsModel.destroy({ where: { cartID } });
+      return true;
     } catch (error) {
       throw new DBError(error.message, 500);
     }
