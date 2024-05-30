@@ -4,6 +4,7 @@ import {
   UpdateQtdItemCartModel,
 } from '../../domain/usecases/cart-items/update-qtd-item-cart';
 import CartItemsRepository from '../../repositories/cart-items.repository';
+import { MissingParamError } from '../../utils/errors/missingParamError';
 
 class UpdateQtdItemCartService implements UpdateQtdItemCart {
   private readonly cartItemsRepository: CartItemsRepository;
@@ -13,6 +14,10 @@ class UpdateQtdItemCartService implements UpdateQtdItemCart {
   }
 
   async updateQtdItemCart(data: UpdateQtdItemCartModel): Promise<CartItems> {
+    const existItem = await this.cartItemsRepository.getItemByID(data.itemID);
+    if (!existItem)
+      throw new MissingParamError('Item do carrinho não encontrado', 404);
+
     return await this.cartItemsRepository.updateQtdItemCart(data);
   }
 }
