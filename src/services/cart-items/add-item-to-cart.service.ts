@@ -2,6 +2,7 @@ import CartItems from '../../domain/model/Cart-items';
 import AddItemToCart, {
   AddItemToCartModel,
 } from '../../domain/usecases/cart-items/add-item-to-cart';
+import AxiosClient from '../../infra/axios-client';
 import CartItemsRepository from '../../repositories/cart-items.repository';
 import CartRepository from '../../repositories/cart-repository';
 import { MissingParamError } from '../../utils/errors/missingParamError';
@@ -9,13 +10,16 @@ import { MissingParamError } from '../../utils/errors/missingParamError';
 class AddItemToCartService implements AddItemToCart {
   private readonly cartItemsRepository: CartItemsRepository;
   private readonly cartRepository: CartRepository;
+  private readonly httpClient: AxiosClient;
 
   constructor(
     cartItemsRepository: CartItemsRepository,
     cartRepository: CartRepository,
+    httpClient: AxiosClient,
   ) {
     this.cartRepository = cartRepository;
     this.cartItemsRepository = cartItemsRepository;
+    this.httpClient = httpClient;
   }
 
   async addItemToCart(data: AddItemToCartModel): Promise<CartItems> {
@@ -32,6 +36,12 @@ class AddItemToCartService implements AddItemToCart {
       if (existCart.status !== 'open')
         throw new MissingParamError('Carrinho não está aberto', 401);
     }
+
+    const getItemDetails = await this.httpClient.get(`/event/${data.item}`);
+    if (!getItemDetails)
+      throw new MissingParamError('Item não encontrado', 404);
+
+    data.item = getItemDetails;
 
     return await this.cartItemsRepository.addItemToCart(data);
   }
