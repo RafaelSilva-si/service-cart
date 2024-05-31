@@ -6,14 +6,18 @@ import UpdateQtdItemCartService from './services/cart-items/update-qtd-item-cart
 import ClearCartService from './services/cart-items/clear-cart.service';
 import CartItemsRepository from './repositories/cart-items.repository';
 import CartRepository from './repositories/cart-repository';
+import envs from './config/global';
+import AxiosClient from './infra/axios-client';
 
 const router = Router();
 const cartItemRepository = new CartItemsRepository();
 const cartRepository = new CartRepository();
+const axiosClient = new AxiosClient(envs.API_URL);
 
 const addItemToCartService = new AddItemToCartService(
   cartItemRepository,
   cartRepository,
+  axiosClient,
 );
 const getCartDetailsService = new GetCartDetailsService(cartRepository);
 const updateQtdItemCartService = new UpdateQtdItemCartService(
