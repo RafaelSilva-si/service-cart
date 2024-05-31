@@ -15,7 +15,7 @@ class CartRepository
 {
   async getCartDetails(cartID: string): Promise<CartDetails> {
     try {
-      const cart = await CartModel.findById(cartID);
+      const cart = (await CartModel.findById(cartID)).populate('items');
       return cart;
     } catch (error) {
       throw new DBError(error.message, 500);

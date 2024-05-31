@@ -11,6 +11,7 @@ import {
   UpdateQtdItemCartModel,
 } from '../domain/usecases/cart-items/update-qtd-item-cart';
 import DBError from '../utils/errors/dbError';
+import CartModel from '../data/models/Cart';
 
 class CartItemsRepository
   implements
@@ -22,8 +23,13 @@ class CartItemsRepository
 {
   async addItemToCart(data: AddItemToCartModel): Promise<CartItems> {
     try {
-      const result = await CartItemsModel.create({ ...data });
-      return result.save();
+      const newItem = new CartItemsModel({ ...data });
+      const savedItem = await newItem.save();
+      const cart = await CartModel.findById(data.cartID);
+      cart.items.push(savedItem._id);
+      await cart.save();
+
+      return savedItem;
     } catch (error) {
       throw new DBError(error.message, 500);
     }
