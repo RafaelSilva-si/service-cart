@@ -4,6 +4,13 @@ export interface CartItems {
   itemID: string;
   userID: string;
   qtd: number;
+  title: string;
+  date: string;
+  description: string;
+  category: string;
+  cover: string;
+  location: string;
+  price: number;
 }
 
 export default CartItems;

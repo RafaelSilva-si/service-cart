@@ -44,16 +44,7 @@ describe('Add Item To Cart', () => {
 
     const data = {
       userID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
-      item: {
-        _id: '665a0d0bb6409a4984e7ce07',
-        title: 'Evento Teste',
-        date: '2024-06-01T12:00:00.000Z',
-        description: 'Descrição do evento teste',
-        category: 'Categoria do Evento',
-        cover: 'teste',
-        location: 'Expo SP',
-        price: 50,
-      },
+      itemID: '665a0d0bb6409a4984e7ce07',
       qtd: 1,
     };
 
@@ -66,16 +57,7 @@ describe('Add Item To Cart', () => {
 
     const data = {
       userID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
-      item: {
-        _id: '665a0d0bb6409a4984e7ce07',
-        title: 'Evento Teste',
-        date: '2024-06-01T12:00:00.000Z',
-        description: 'Descrição do evento teste',
-        category: 'Categoria do Evento',
-        cover: 'teste',
-        location: 'Expo SP',
-        price: 50,
-      },
+      itemID: '665a0d0bb6409a4984e7ce07',
       cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
       qtd: 1,
     };
@@ -94,16 +76,7 @@ describe('Add Item To Cart', () => {
 
     const data = {
       userID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
-      item: {
-        _id: '665a0d0bb6409a4984e7ce07',
-        title: 'Evento Teste',
-        date: '2024-06-01T12:00:00.000Z',
-        description: 'Descrição do evento teste',
-        category: 'Categoria do Evento',
-        cover: 'teste',
-        location: 'Expo SP',
-        price: 50,
-      },
+      itemID: '665a0d0bb6409a4984e7ce07',
       cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
       qtd: 1,
     };

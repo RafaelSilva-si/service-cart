@@ -19,7 +19,10 @@ const addItemToCartService = new AddItemToCartService(
   cartRepository,
   axiosClient,
 );
-const getCartDetailsService = new GetCartDetailsService(cartRepository);
+const getCartDetailsService = new GetCartDetailsService(
+  cartRepository,
+  axiosClient,
+);
 const updateQtdItemCartService = new UpdateQtdItemCartService(
   cartItemRepository,
 );

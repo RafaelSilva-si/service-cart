@@ -37,11 +37,11 @@ class AddItemToCartService implements AddItemToCart {
         throw new MissingParamError('Carrinho não está aberto', 401);
     }
 
-    const getItemDetails = await this.httpClient.get(`/event/${data.item}`);
+    const getItemDetails = await this.httpClient.get(`/event/${data.itemID}`);
     if (!getItemDetails)
       throw new MissingParamError('Item não encontrado', 404);
 
-    data.item = getItemDetails;
+    data.itemID = getItemDetails._id;
 
     return await this.cartItemsRepository.addItemToCart(data);
   }

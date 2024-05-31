@@ -1,9 +1,8 @@
 import CartItems from '../../model/Cart-items';
-import { Item } from '../../model/Item';
 
 export interface AddItemToCartModel {
   cartID?: string;
-  item: Item;
+  itemID: string;
   userID: string;
   qtd: number;
 }
