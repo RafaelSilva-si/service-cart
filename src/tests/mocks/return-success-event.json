@@ -1,0 +1,17 @@
+{
+    "capacity": 100,
+    "category": "Tecnologia",
+    "createdAt": "2024-05-27T19:06:27.111Z",
+    "date": "2024-06-29T00:00:00.000Z",
+    "description": "Um evento massa sobre programação!",
+    "id": "a6fcbddd-cb9d-4d75-acb3-105a50a607e2",
+    "status": "Ativo",
+    "title": "Evento de programação",
+    "updatedAt": "2024-05-27T19:06:27.111Z",
+    "cover":
+        "https://cdn.pixabay.com/photo/2015/12/09/01/02/mandalas-1084082_1280.jpg",
+    "gallery": [
+        "https://cdn.pixabay.com/photo/2015/12/09/01/02/mandalas-1084082_1280.jpg",
+        "https://cdn.pixabay.com/photo/2020/04/19/08/17/watercolor-5062356_1280.jpg"
+      ]
+}
