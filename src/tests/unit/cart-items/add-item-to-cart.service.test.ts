@@ -34,7 +34,7 @@ describe('Add Item To Cart', () => {
 
     const data = {
       userID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
-      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      itemID: '9152fc3d-0c5a-4ac3-83fe-64bd83b5307c',
       qtd: 1,
     };
 

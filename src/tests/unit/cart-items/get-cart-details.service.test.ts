@@ -21,7 +21,7 @@ describe('Listar carrinho', () => {
     );
 
     const result = await getCartDetailsService.getCartDetails(
-      'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      '41abe05c-3acb-471f-9634-fa366f3d5fbd',
     );
 
     assert.deepEqual(result, mocks.returnCartDetails);

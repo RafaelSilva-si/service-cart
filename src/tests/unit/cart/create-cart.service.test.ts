@@ -33,7 +33,7 @@ describe('Create Cart Service', () => {
     );
 
     const data = {
-      userID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      userID: '167e46f4-2334-4a69-b944-4ff89e29f1e3',
     };
 
     const result = await createCartService.create(data);

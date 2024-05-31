@@ -20,6 +20,7 @@ describe('Atualiza status do Carrinho', () => {
       id: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
       userID: '123',
       status: '1231',
+      items: [],
     });
 
     Sinon.stub(CartRepository.prototype, 'update').resolves(
