@@ -1,39 +1,27 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../../config/sequelize';
-import User from './User';
+import mongoose, { Schema } from 'mongoose';
+import Cart from '../../domain/model/Cart';
 
-class Cart extends Model {
-  public id!: string;
-  public userID!: string;
-  public status!: string;
-}
-
-Cart.init(
+const cartSchema = new Schema(
   {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
+    _id: {
+      type: mongoose.Types.ObjectId,
+      auto: true,
     },
     userID: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      references: {
-        model: User,
-        key: 'id',
-      },
+      type: String,
+      required: true,
     },
     status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'active',
+      type: String,
+      required: true,
+      default: 'active',
     },
   },
   {
-    sequelize,
-    modelName: 'Cart',
-    tableName: 'carts',
+    timestamps: true,
   },
 );
+
+const Cart = mongoose.model<Cart>('Cart', cartSchema);
 
 export default Cart;

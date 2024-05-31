@@ -1,5 +1,4 @@
 import CartModel from '../data/models/Cart';
-import CartItems from '../data/models/Cart-items';
 import Cart from '../domain/model/Cart';
 import CartDetails from '../domain/model/Cart-details';
 import {
@@ -16,10 +15,8 @@ class CartRepository
 {
   async getCartDetails(cartID: string): Promise<CartDetails> {
     try {
-      return await CartModel.findOne({
-        where: { id: cartID },
-        include: [{ model: CartItems, as: 'items', include: ['event'] }],
-      });
+      const cart = await CartModel.findById(cartID);
+      return cart;
     } catch (error) {
       throw new DBError(error.message, 500);
     }
@@ -27,7 +24,8 @@ class CartRepository
 
   async create(data: CreateCartModel): Promise<Cart> {
     try {
-      return await CartModel.create({ data });
+      const result = await CartModel.create({ ...data });
+      return result.save();
     } catch (error) {
       throw new DBError(error.message, 500);
     }
@@ -35,14 +33,12 @@ class CartRepository
 
   async update(id: string, status: string): Promise<Cart> {
     try {
-      const result = await CartModel.update(
+      const cart = await CartModel.findByIdAndUpdate(
+        id,
         { status },
-        {
-          where: { id },
-          returning: true,
-        },
+        { new: true },
       );
-      return result[1][0].dataValues;
+      return cart;
     } catch (error) {
       throw new DBError(error.message, 500);
     }
@@ -50,7 +46,7 @@ class CartRepository
 
   async getCartById(id: string): Promise<Cart> {
     try {
-      return await CartModel.findOne({ where: { id } });
+      return await CartModel.findById(id);
     } catch (error) {
       throw new DBError(error.message, 500);
     }

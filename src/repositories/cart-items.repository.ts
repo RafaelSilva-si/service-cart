@@ -22,7 +22,8 @@ class CartItemsRepository
 {
   async addItemToCart(data: AddItemToCartModel): Promise<CartItems> {
     try {
-      return await CartItemsModel.create({ data });
+      const result = await CartItemsModel.create({ ...data });
+      return result.save();
     } catch (error) {
       throw new DBError(error.message, 500);
     }
@@ -30,8 +31,8 @@ class CartItemsRepository
 
   async removeItem(id: string): Promise<boolean> {
     try {
-      await CartItemsModel.destroy({ where: { id } });
-      return true;
+      const result = await CartItemsModel.deleteOne({ _id: id });
+      return result.deletedCount === 1;
     } catch (error) {
       throw new DBError(error.message, 500);
     }
@@ -39,7 +40,7 @@ class CartItemsRepository
 
   async getItemByID(id: string): Promise<CartItems | null> {
     try {
-      return await CartItemsModel.findOne({ where: { id } });
+      return await CartItemsModel.findById(id);
     } catch (error) {
       throw new DBError(error.message, 500);
     }
@@ -47,14 +48,12 @@ class CartItemsRepository
 
   async updateQtdItemCart(data: UpdateQtdItemCartModel): Promise<CartItems> {
     try {
-      const result = await CartItemsModel.update(
+      const result = await CartItemsModel.findByIdAndUpdate(
+        data.itemID,
         { qtd: data.qtd },
-        {
-          where: { id: data.itemID, cartID: data.cartID },
-          returning: true,
-        },
+        { new: true },
       );
-      return result[1][0].dataValues;
+      return result;
     } catch (error) {
       throw new DBError(error.message, 500);
     }
@@ -62,8 +61,8 @@ class CartItemsRepository
 
   async clear(cartID: string): Promise<boolean> {
     try {
-      await CartItemsModel.destroy({ where: { cartID } });
-      return true;
+      const result = await CartItemsModel.deleteMany({ cartID });
+      return result.deletedCount > 0;
     } catch (error) {
       throw new DBError(error.message, 500);
     }
