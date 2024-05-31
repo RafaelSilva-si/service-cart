@@ -55,7 +55,7 @@ class CartItemsRepository
   async updateQtdItemCart(data: UpdateQtdItemCartModel): Promise<CartItems> {
     try {
       const result = await CartItemsModel.findByIdAndUpdate(
-        data.itemID,
+        data.id,
         { qtd: data.qtd },
         { new: true },
       );

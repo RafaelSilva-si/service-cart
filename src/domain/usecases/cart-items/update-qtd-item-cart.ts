@@ -1,8 +1,7 @@
 import CartItems from '../../model/Cart-items';
 
 export interface UpdateQtdItemCartModel {
-  cartID: string;
-  itemID: string;
+  id: string;
   qtd: number;
 }
 

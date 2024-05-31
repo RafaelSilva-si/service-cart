@@ -26,8 +26,7 @@ describe('Atualizar Qtd de Item do Carrinho', () => {
     );
 
     const data = {
-      cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
-      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      id: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
       qtd: 1,
     };
 
@@ -39,8 +38,7 @@ describe('Atualizar Qtd de Item do Carrinho', () => {
     Sinon.stub(CartItemsRepository.prototype, 'getItemByID').resolves(null);
 
     const data = {
-      cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
-      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      id: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
       qtd: 1,
     };
 
@@ -61,8 +59,7 @@ describe('Atualizar Qtd de Item do Carrinho', () => {
     Sinon.stub(CartItemsRepository.prototype, 'removeItem').resolves(true);
 
     const data = {
-      cartID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
-      itemID: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
+      id: 'a6fcbddd-cb9d-4d75-acb3-105a50a607e2',
       qtd: 0,
     };
 

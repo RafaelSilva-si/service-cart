@@ -14,12 +14,12 @@ class UpdateQtdItemCartService implements UpdateQtdItemCart {
   }
 
   async updateQtdItemCart(data: UpdateQtdItemCartModel): Promise<CartItems> {
-    const existItem = await this.cartItemsRepository.getItemByID(data.itemID);
+    const existItem = await this.cartItemsRepository.getItemByID(data.id);
     if (!existItem)
       throw new MissingParamError('Item do carrinho não encontrado', 404);
 
     if (data.qtd <= 0) {
-      await this.cartItemsRepository.removeItem(data.itemID);
+      await this.cartItemsRepository.removeItem(data.id);
     }
 
     return await this.cartItemsRepository.updateQtdItemCart(data);

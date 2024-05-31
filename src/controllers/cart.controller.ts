@@ -58,9 +58,8 @@ class CartController {
   ) => {
     try {
       const cart = await this.updateQtdItemCartService.updateQtdItemCart({
-        cartID: req.body.cartID,
-        itemID: req.body.itemID,
-        qtd: req.body,
+        id: req.body.id,
+        qtd: req.body.qtd,
       });
 
       res.status(200).send(cart);
