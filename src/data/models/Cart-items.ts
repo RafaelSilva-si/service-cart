@@ -11,9 +11,39 @@ const cartItemSchema = new Schema(
       type: mongoose.Types.ObjectId,
       required: true,
     },
-    itemID: {
-      type: mongoose.Types.ObjectId,
-      required: true,
+    item: {
+      _id: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+      },
+      title: {
+        type: String,
+        required: true,
+      },
+      date: {
+        type: Date,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+      category: {
+        type: String,
+        required: true,
+      },
+      cover: {
+        type: String,
+        required: true,
+      },
+      location: {
+        type: String,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
     },
     userID: {
       type: String,
