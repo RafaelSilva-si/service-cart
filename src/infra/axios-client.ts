@@ -29,7 +29,7 @@ class AxiosClient {
     return Promise.reject(error);
   }
 
-  public async get<T>(url: string, config?: AxiosRequestConfig) {
+  public async get<T>(url: string, config?: AxiosRequestConfig): Promise<any> {
     const response = await this.axiosInstance.get<T>(url, config);
     return response;
   }
