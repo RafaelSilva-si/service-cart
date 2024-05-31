@@ -14,9 +14,10 @@ class CreateCartService implements CreateCart {
   }
 
   async create(data: any): Promise<Cart> {
-    const user = await this.axiosClient.get('/user');
+    const user: any = await this.axiosClient.get('/user');
     if (!user.data) throw new MissingParamError('Usuário Invalido', 401);
 
+    data.userID = user.data.id;
     return await this.cartRepository.create(data);
   }
 }
