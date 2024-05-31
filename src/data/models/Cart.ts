@@ -16,6 +16,7 @@ const cartSchema = new Schema(
       required: true,
       default: 'active',
     },
+    items: [{ type: Schema.Types.ObjectId, ref: 'CartItem' }],
   },
   {
     timestamps: true,
